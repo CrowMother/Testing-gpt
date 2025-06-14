@@ -1,0 +1,6 @@
+aiohttp
+SQLAlchemy>=1.4
+asyncpg
+flake8
+pytest
+black

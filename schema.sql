@@ -1,0 +1,14 @@
+CREATE TABLE IF NOT EXISTS account_balances (
+    id SERIAL PRIMARY KEY,
+    broker VARCHAR NOT NULL,
+    balance NUMERIC NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS trades (
+    id SERIAL PRIMARY KEY,
+    broker VARCHAR NOT NULL,
+    trade_id VARCHAR UNIQUE NOT NULL,
+    data JSONB NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT NOW()
+);
