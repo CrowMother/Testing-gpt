@@ -19,7 +19,7 @@ export SCHWAB_CLIENT_ID=your_client_id
 export SCHWAB_CLIENT_SECRET=your_client_secret
 export ROBINHOOD_TOKEN=token
 export WEBULL_TOKEN=token
-export DB_URL=postgresql+asyncpg://user:pass@localhost/db
+export DB_URL=postgresql+asyncpg://user:password@localhost/db
 ```
 
 ### Schwab login
@@ -49,7 +49,7 @@ docker run -e TOS_TOKEN=token -e SCHWAB_TOKEN=token \
   -e SCHWAB_CLIENT_ID=your_client_id \
   -e SCHWAB_CLIENT_SECRET=your_client_secret \
   -e ROBINHOOD_TOKEN=token -e WEBULL_TOKEN=token \
-  -e DB_URL=postgresql+asyncpg://user:pass@host/db ingestion
+  -e DB_URL=postgresql+asyncpg://user:password@host/db ingestion
 ```
 
 ### Example HTTP call
