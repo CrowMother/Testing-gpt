@@ -8,7 +8,10 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 
 logger = logging.getLogger(__name__)
 
-DATABASE_URL = os.getenv("DB_URL", "postgresql+asyncpg://user:password@localhost/db")
+DATABASE_URL = os.getenv(
+    "DB_URL",
+    "postgresql+asyncpg://user:password@localhost/db",
+)
 
 Base = declarative_base()
 
@@ -48,7 +51,11 @@ async def insert_account_balance(
     await session.commit()
 
 
-async def insert_trades(session: AsyncSession, broker: str, trades: list[dict]) -> None:
+async def insert_trades(
+    session: AsyncSession,
+    broker: str,
+    trades: list[dict],
+) -> None:
     for trade in trades:
         record = Trade(broker=broker, trade_id=trade["id"], data=trade)
         session.add(record)
