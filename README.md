@@ -15,9 +15,24 @@ Set environment variables for tokens and database URL:
 ```bash
 export TOS_TOKEN=token
 export SCHWAB_TOKEN=token
+export SCHWAB_CLIENT_ID=your_client_id
+export SCHWAB_CLIENT_SECRET=your_client_secret
 export ROBINHOOD_TOKEN=token
 export WEBULL_TOKEN=token
 export DB_URL=postgresql+asyncpg://user:pass@localhost/db
+```
+
+### Schwab login
+
+Generate a browser authorization URL and exchange the returned code for a token:
+
+```python
+from src.clients.schwab_api import CharlesSchwabClient
+
+client = CharlesSchwabClient()
+print(client.get_authorization_url("https://example.com/callback", "state123"))
+# After redirect, call:
+# await client.exchange_code(received_code, "https://example.com/callback")
 ```
 
 Run the service:
@@ -31,6 +46,8 @@ python -m src.run_service
 ```bash
 docker build -t ingestion .
 docker run -e TOS_TOKEN=token -e SCHWAB_TOKEN=token \
+  -e SCHWAB_CLIENT_ID=your_client_id \
+  -e SCHWAB_CLIENT_SECRET=your_client_secret \
   -e ROBINHOOD_TOKEN=token -e WEBULL_TOKEN=token \
   -e DB_URL=postgresql+asyncpg://user:pass@host/db ingestion
 ```
